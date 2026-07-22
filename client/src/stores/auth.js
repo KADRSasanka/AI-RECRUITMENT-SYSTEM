@@ -27,30 +27,22 @@ export const useAuthStore = defineStore("auth", {
 
         login(data){
 
+
             this.token = data.token;
-
-
-            const decoded = jwtDecode(data.token);
 
 
             this.user = {
 
-                id:
-                decoded.sub,
+                id: data.userId || null,
 
+                name: data.fullName,
 
-                name:
-                data.fullName,
+                email: data.email,
 
-
-                email:
-                data.email,
-
-
-                role:
-                data.role
+                role: data.role
 
             };
+
 
 
             localStorage.setItem(
@@ -65,7 +57,6 @@ export const useAuthStore = defineStore("auth", {
             );
 
         },
-
 
 
         logout(){
