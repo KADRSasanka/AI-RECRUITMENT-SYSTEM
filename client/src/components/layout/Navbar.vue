@@ -1,7 +1,7 @@
 <template>
 
 <header 
-class="bg-white shadow p-4 flex justify-between">
+class="bg-gray-900 shadow p-4 flex justify-between">
 
 
 <h2 class="text-xl font-semibold">
