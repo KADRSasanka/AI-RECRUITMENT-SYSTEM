@@ -1,116 +1,140 @@
-import {createRouter,createWebHistory}
-from "vue-router";
-
+import { createRouter, createWebHistory } from "vue-router";
 
 import Login from "../views/auth/Login.vue";
+import DashboardLayout from "../layouts/DashboardLayout.vue";
 
+import { useAuthStore } from "../stores/auth";
 
-import {useAuthStore}
-from "../stores/auth";
-
-
-const routes=[
-
+const routes = [
 
 {
-    path:"/",
-    redirect:"/login"
+    path: "/",
+    redirect: "/login"
+},
+
+{
+    path: "/login",
+    component: Login
+},
+
+// ==================== ADMIN ====================
+
+{
+    path: "/admin",
+    component: DashboardLayout,
+    meta: {
+        role: "Administrator"
+    },
+    children: [
+
+        {
+            path: "dashboard",
+            component: () =>
+                import("../views/admin/Dashboard.vue")
+        },
+
+        {
+            path: "users",
+            component: () =>
+                import("../views/admin/Users.vue")
+        }
+
+    ]
+},
+
+// ==================== RECRUITER ====================
+
+{
+    path: "/recruiter",
+    component: DashboardLayout,
+    meta: {
+        role: "Recruiter"
+    },
+    children: [
+
+        {
+            path: "dashboard",
+            component: () =>
+                import("../views/recruiter/Dashboard.vue")
+        }
+
+    ]
+},
+
+// ==================== MANAGER ====================
+
+{
+    path: "/manager",
+    component: DashboardLayout,
+    meta: {
+        role: "Hiring Manager"
+    },
+    children: [
+
+        {
+            path: "dashboard",
+            component: () =>
+                import("../views/manager/Dashboard.vue")
+        }
+
+    ]
+},
+
+// ==================== CANDIDATE ====================
+
+{
+    path: "/candidate",
+    component: DashboardLayout,
+    meta: {
+        role: "Candidate"
+    },
+    children: [
+
+        {
+            path: "dashboard",
+            component: () =>
+                import("../views/candidate/Dashboard.vue")
+        }
+
+    ]
 },
 
 
 
-{
-    path:"/login",
-    component:Login
-},
-
 
 
 {
-    path:"/candidate/dashboard",
-    component:()=>import("../views/candidate/Dashboard.vue"),
-    meta:{
-        role:"Candidate"
-    }
-},
-
-
-
-{
-    path:"/recruiter/dashboard",
-    component:()=>import("../views/recruiter/Dashboard.vue"),
-    meta:{
-        role:"Recruiter"
-    }
-},
-
-
-
-{
-    path:"/manager/dashboard",
-    component:()=>import("../views/manager/Dashboard.vue"),
-    meta:{
-        role:"Hiring Manager"
-    }
-},
-
-
-
-{
-    path:"/admin/dashboard",
-    component:()=>import("../views/admin/Dashboard.vue"),
-    meta:{
-        role:"Administrator"
-    }
+ path:"/admin/users",
+ component:()=>import("../views/admin/Users.vue"),
+ meta:{
+    role:"Administrator"
+ }
 }
-
-
 
 ];
 
+const router = createRouter({
 
+    history: createWebHistory(),
 
-const router=createRouter({
-
-history:createWebHistory(),
-
-routes
+    routes
 
 });
 
+router.beforeEach((to) => {
 
+    const auth = useAuthStore();
 
+    if (to.meta.role) {
 
-router.beforeEach((to)=>{
+        if (!auth.isAuthenticated) {
+            return "/login";
+        }
 
-
-const auth=useAuthStore();
-
-
-if(to.meta.role){
-
-
-if(!auth.isAuthenticated)
-{
-return "/login";
-}
-
-
-
-if(auth.role!==to.meta.role)
-{
-
-return "/";
-
-}
-
-
-}
-
-
-
+        if (auth.role !== to.meta.role) {
+            return "/";
+        }
+    }
 });
-
-
 
 export default router;
