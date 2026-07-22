@@ -1,13 +1,15 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter,createWebHistory}
+from "vue-router";
+
 
 import Login from "../views/auth/Login.vue";
 
-import Login from "../views/Login.vue";
 
-import { useAuthStore } from "../stores/auth";
+import {useAuthStore}
+from "../stores/auth";
 
 
-const routes = [
+const routes=[
 
 
 {
@@ -26,7 +28,7 @@ const routes = [
 
 {
     path:"/candidate",
-    component:()=>import("../views/candidate/CandidateDashboard.vue"),
+    component:()=>import("../views/candidate/Dashboard.vue"),
     meta:{
         role:"Candidate"
     }
@@ -36,7 +38,7 @@ const routes = [
 
 {
     path:"/recruiter",
-    component:()=>import("../views/recruiter/RecruiterDashboard.vue"),
+    component:()=>import("../views/recruiter/Dashboard.vue"),
     meta:{
         role:"Recruiter"
     }
@@ -46,7 +48,7 @@ const routes = [
 
 {
     path:"/manager",
-    component:()=>import("../views/manager/ManagerDashboard.vue"),
+    component:()=>import("../views/manager/Dashboard.vue"),
     meta:{
         role:"Hiring Manager"
     }
@@ -56,31 +58,25 @@ const routes = [
 
 {
     path:"/admin",
-    component:()=>import("../views/admin/AdminDashboard.vue"),
+    component:()=>import("../views/admin/Dashboard.vue"),
     meta:{
         role:"Administrator"
     }
 }
 
 
-    ]
-
-}
-
 
 ];
 
 
 
-
 const router=createRouter({
 
-    history:createWebHistory(),
+history:createWebHistory(),
 
-    routes
+routes
 
 });
-
 
 
 
@@ -88,34 +84,32 @@ const router=createRouter({
 router.beforeEach((to)=>{
 
 
-    const auth = useAuthStore();
+const auth=useAuthStore();
+
+
+if(to.meta.role){
+
+
+if(!auth.isAuthenticated)
+{
+return "/login";
+}
 
 
 
-    if(to.meta.role){
+if(auth.role!==to.meta.role)
+{
+
+return "/";
+
+}
 
 
-
-        if(!auth.isAuthenticated)
-        {
-            return "/login";
-        }
-
-
-
-
-        if(auth.role !== to.meta.role)
-        {
-            return "/";
-        }
-
-
-    }
+}
 
 
 
 });
-
 
 
 
