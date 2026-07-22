@@ -1,0 +1,7 @@
+{
+  "firstName": "Admin",
+  "lastName": "User",
+  "email": "admin@email.com",
+  "password": "Admin@1234",
+  "confirmPassword": "Admin@1234"
+}
