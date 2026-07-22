@@ -5,7 +5,7 @@ using server.Interfaces;
 namespace server.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/Dashboard")]
 [Authorize(Roles = "Administrator,Recruiter")]
 public class DashboardController : ControllerBase
 {

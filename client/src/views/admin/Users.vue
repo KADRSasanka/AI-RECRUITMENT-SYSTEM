@@ -8,30 +8,31 @@ User Management
 </h1>
 
 
-
-<div class="bg-white rounded-xl shadow p-6">
+<div class="bg-white rounded-xl shadow overflow-hidden">
 
 
 <table class="w-full">
 
 
-<thead>
+<thead class="bg-gray-100">
 
-<tr class="border-b">
+<tr>
 
-<th class="text-left p-3">
+<th class="p-4 text-left">
 Name
 </th>
 
-<th class="text-left p-3">
+<th class="p-4 text-left">
 Email
 </th>
 
-<th class="text-left p-3">
+
+<th class="p-4 text-left">
 Role
 </th>
 
-<th class="text-left p-3">
+
+<th class="p-4 text-left">
 Status
 </th>
 
@@ -48,32 +49,40 @@ Status
 <tr
 v-for="user in users"
 :key="user.userId"
-class="border-b">
+class="border-t"
+>
 
 
-<td class="p-3">
+<td class="p-4">
 {{user.firstName}} {{user.lastName}}
 </td>
 
 
-<td class="p-3">
+<td class="p-4">
 {{user.email}}
 </td>
 
 
-<td class="p-3">
-{{user.role?.name}}
+<td class="p-4">
+{{user.role}}
 </td>
 
 
-<td class="p-3">
+<td class="p-4">
 
 <span
-class="bg-green-100 text-green-700 px-3 py-1 rounded">
+class="px-3 py-1 rounded-full text-sm"
+:class="
+user.isActive
+?'bg-green-100 text-green-700'
+:'bg-red-100 text-red-700'
+"
+>
 
-Active
+{{user.isActive ? "Active":"Inactive"}}
 
 </span>
+
 
 </td>
 
@@ -90,9 +99,7 @@ Active
 </div>
 
 
-
 </div>
-
 
 </template>
 
@@ -102,38 +109,39 @@ Active
 
 import {ref,onMounted} from "vue";
 
-import {getUsers} from "../../api/user";
+import {getUsers}
+from "../../api/users";
 
 
-const users = ref([]);
+const users=ref([]);
 
 
 
-const loadUsers = async()=>{
+const loadUsers=async()=>{
 
 
-try{
+const response =
+await getUsers();
 
 
-const response = await getUsers();
+console.log(
+"USERS:",
+response.data
+);
 
 
 users.value=response.data;
 
 
 }
-catch(error){
-
-console.log(error);
-
-}
-
-
-};
 
 
 
-onMounted(loadUsers);
+onMounted(()=>{
+
+loadUsers();
+
+});
 
 
 </script>
