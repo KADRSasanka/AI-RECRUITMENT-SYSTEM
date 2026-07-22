@@ -27,7 +27,7 @@ const routes=[
 
 
 {
-    path:"/candidate",
+    path:"/candidate/dashboard",
     component:()=>import("../views/candidate/Dashboard.vue"),
     meta:{
         role:"Candidate"
@@ -37,7 +37,7 @@ const routes=[
 
 
 {
-    path:"/recruiter",
+    path:"/recruiter/dashboard",
     component:()=>import("../views/recruiter/Dashboard.vue"),
     meta:{
         role:"Recruiter"
@@ -47,7 +47,7 @@ const routes=[
 
 
 {
-    path:"/manager",
+    path:"/manager/dashboard",
     component:()=>import("../views/manager/Dashboard.vue"),
     meta:{
         role:"Hiring Manager"
@@ -57,7 +57,7 @@ const routes=[
 
 
 {
-    path:"/admin",
+    path:"/admin/dashboard",
     component:()=>import("../views/admin/Dashboard.vue"),
     meta:{
         role:"Administrator"
