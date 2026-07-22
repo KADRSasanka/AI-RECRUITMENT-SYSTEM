@@ -1,90 +1,116 @@
-import { createRouter, createWebHistory } from "vue-router";
-
-import Login from "../views/auth/Login.vue";
-
-import AdminDashboard from "../views/admin/Dashboard.vue";
-import RecruiterDashboard from "../views/recruiter/Dashboard.vue";
-import ManagerDashboard from "../views/manager/Dashboard.vue";
-import CandidateDashboard from "../views/candidate/Dashboard.vue";
-
-import NotFound from "../views/NotFound.vue";
-
-import { useAuthStore } from "../stores/authStore";
-import DashboardLayout from "../layouts/DashboardLayout.vue";
-
-const routes = [
-    {
-        path:"/",
-        component: DashboardLayout,
-
-        children:[
+import {createRouter,createWebHistory}
+from "vue-router";
 
 
-            {
-                path:"admin/dashboard",
-                component:AdminDashboard
-            },
+import Login from "../views/Login.vue";
 
 
-            {
-                path:"recruiter/dashboard",
-                component:RecruiterDashboard
-            },
+import {useAuthStore}
+from "../stores/auth";
 
 
-            {
-                path:"manager/dashboard",
-                component:ManagerDashboard
-            },
+const routes=[
 
 
-            {
-                path:"candidate/dashboard",
-                component:CandidateDashboard
-            },
+{
+    path:"/",
+    redirect:"/login"
+},
 
 
-            {
-                path: "/:pathMatch(.*)*",
-                component: NotFound
-            }
 
-        ]
+{
+    path:"/login",
+    component:Login
+},
 
+
+
+{
+    path:"/candidate",
+    component:()=>import("../views/candidate/CandidateDashboard.vue"),
+    meta:{
+        role:"Candidate"
     }
-    
+},
+
+
+
+{
+    path:"/recruiter",
+    component:()=>import("../views/recruiter/RecruiterDashboard.vue"),
+    meta:{
+        role:"Recruiter"
+    }
+},
+
+
+
+{
+    path:"/manager",
+    component:()=>import("../views/manager/ManagerDashboard.vue"),
+    meta:{
+        role:"Hiring Manager"
+    }
+},
+
+
+
+{
+    path:"/admin",
+    component:()=>import("../views/admin/AdminDashboard.vue"),
+    meta:{
+        role:"Administrator"
+    }
+}
+
+
+
 ];
 
-const router = createRouter({
-    history: createWebHistory(),
-    routes
+
+
+const router=createRouter({
+
+history:createWebHistory(),
+
+routes
+
 });
+
+
+
 
 router.beforeEach((to)=>{
 
 
-    const auth = useAuthStore();
+const auth=useAuthStore();
+
+
+if(to.meta.role){
+
+
+if(!auth.isAuthenticated)
+{
+return "/login";
+}
 
 
 
-    const publicPages=[
-        "/login"
-    ];
+if(auth.role!==to.meta.role)
+{
+
+return "/";
+
+}
 
 
+}
 
-    const authRequired =
-        !publicPages.includes(to.path);
-
-
-
-    if(authRequired && !auth.token){
-
-        return "/login";
-
-    }
 
 
 });
+
+
 
 export default router;

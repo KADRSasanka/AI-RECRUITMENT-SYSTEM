@@ -14,46 +14,32 @@ AI Recruit
 
 <nav class="space-y-3">
 
-
 <router-link
 to="/admin/dashboard"
 class="block hover:bg-slate-700 p-3 rounded">
-
 Dashboard
-
 </router-link>
-
 
 
 <router-link
-to="/jobs"
+to="/admin/users"
 class="block hover:bg-slate-700 p-3 rounded">
-
-Jobs
-
+Users
 </router-link>
-
 
 
 <router-link
-to="/applications"
+to="/admin/organizations"
 class="block hover:bg-slate-700 p-3 rounded">
-
-Applications
-
+Organizations
 </router-link>
-
 
 
 <router-link
-to="/interviews"
+to="/admin/departments"
 class="block hover:bg-slate-700 p-3 rounded">
-
-Interviews
-
+Departments
 </router-link>
-
-
 
 </nav>
 

@@ -165,3 +165,4 @@ C:\Users\sasan\OneDrive\Documents\RAVINDU\AI-Recruitment-System\server\bin\Debug
 C:\Users\sasan\OneDrive\Documents\RAVINDU\AI-Recruitment-System\server\bin\Debug\net9.0\UglyToad.PdfPig.Tokenization.dll
 C:\Users\sasan\OneDrive\Documents\RAVINDU\AI-Recruitment-System\server\bin\Debug\net9.0\UglyToad.PdfPig.Tokens.dll
 C:\Users\sasan\OneDrive\Documents\RAVINDU\AI-Recruitment-System\server\bin\Debug\net9.0\UglyToad.PdfPig.dll
+C:\Users\sasan\OneDrive\Documents\RAVINDU\AI-Recruitment-System\server\obj\Debug\net9.0\server.sourcelink.json
