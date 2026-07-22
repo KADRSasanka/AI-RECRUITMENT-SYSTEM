@@ -2,7 +2,7 @@ import {createRouter,createWebHistory}
 from "vue-router";
 
 
-import Login from "../views/Login.vue";
+import Login from "../views/auth/Login.vue";
 
 
 import {useAuthStore}
@@ -28,7 +28,7 @@ const routes=[
 
 {
     path:"/candidate",
-    component:()=>import("../views/candidate/CandidateDashboard.vue"),
+    component:()=>import("../views/candidate/Dashboard.vue"),
     meta:{
         role:"Candidate"
     }
@@ -38,7 +38,7 @@ const routes=[
 
 {
     path:"/recruiter",
-    component:()=>import("../views/recruiter/RecruiterDashboard.vue"),
+    component:()=>import("../views/recruiter/Dashboard.vue"),
     meta:{
         role:"Recruiter"
     }
@@ -48,7 +48,7 @@ const routes=[
 
 {
     path:"/manager",
-    component:()=>import("../views/manager/ManagerDashboard.vue"),
+    component:()=>import("../views/manager/Dashboard.vue"),
     meta:{
         role:"Hiring Manager"
     }
@@ -58,7 +58,7 @@ const routes=[
 
 {
     path:"/admin",
-    component:()=>import("../views/admin/AdminDashboard.vue"),
+    component:()=>import("../views/admin/Dashboard.vue"),
     meta:{
         role:"Administrator"
     }

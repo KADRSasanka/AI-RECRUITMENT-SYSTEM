@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sasan\\OneDrive\\Documents\\RAVINDU\\AI-Recruitment-System\\server\\server.csproj": {}
+    "C:\\Users\\Tharindu\\Documents\\GitHub\\AI-RECRUITMENT-SYSTEM\\server\\server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sasan\\OneDrive\\Documents\\RAVINDU\\AI-Recruitment-System\\server\\server.csproj": {
+    "C:\\Users\\Tharindu\\Documents\\GitHub\\AI-RECRUITMENT-SYSTEM\\server\\server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sasan\\OneDrive\\Documents\\RAVINDU\\AI-Recruitment-System\\server\\server.csproj",
+        "projectUniqueName": "C:\\Users\\Tharindu\\Documents\\GitHub\\AI-RECRUITMENT-SYSTEM\\server\\server.csproj",
         "projectName": "server",
-        "projectPath": "C:\\Users\\sasan\\OneDrive\\Documents\\RAVINDU\\AI-Recruitment-System\\server\\server.csproj",
-        "packagesPath": "C:\\Users\\sasan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sasan\\OneDrive\\Documents\\RAVINDU\\AI-Recruitment-System\\server\\obj\\",
+        "projectPath": "C:\\Users\\Tharindu\\Documents\\GitHub\\AI-RECRUITMENT-SYSTEM\\server\\server.csproj",
+        "packagesPath": "C:\\Users\\Tharindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tharindu\\Documents\\GitHub\\AI-RECRUITMENT-SYSTEM\\server\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\sasan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Tharindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,6 +26,7 @@
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -44,10 +41,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
@@ -102,6 +100,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.18, 9.0.18]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[9.0.18, 9.0.18]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.18, 9.0.18]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[9.0.18, 9.0.18]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -110,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.316/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
