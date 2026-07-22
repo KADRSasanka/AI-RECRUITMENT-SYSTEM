@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white rounded-xl shadow p-6">
+  <div class="bg-gray-700 rounded-xl shadow p-6">
     <div class="flex items-center justify-between">
-      <h3 class="text-gray-500 text-sm">{{ title }}</h3>
+      <h3 class="text-gray-100 text-sm">{{ title }}</h3>
       <span class="h-2.5 w-2.5 rounded-full" :class="dotClass"></span>
     </div>
 

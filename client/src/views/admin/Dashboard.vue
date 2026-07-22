@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-slate-50 px-6 py-8 md:px-10">
+  <div class="min-h-screen bg-gray-800 px-0 py-0 md:px-10">
     <div class="mx-auto max-w-6xl">
 
       <!-- Header -->
@@ -15,7 +15,7 @@
       <!-- Error state -->
       <div
         v-if="error"
-        class="mt-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+        class="mt-6 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-400"
       >
         {{ error }}
       </div>
@@ -51,16 +51,16 @@
       <!-- Overview + actions -->
       <div class="mt-8 grid gap-6 md:grid-cols-2">
 
-        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="rounded-xl border border-gray-600 bg-gray-700 p-6 shadow-sm">
           <h2 class="mb-4 text-lg font-semibold text-slate-900">
             Recruitment Overview
           </h2>
-          <div class="flex h-64 items-center justify-center rounded-lg bg-slate-50 text-sm text-slate-400">
+          <div class="flex h-64 items-center justify-center rounded-lg bg-gray-700 text-sm text-slate-400">
             Chart area
           </div>
         </div>
 
-        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="rounded-xl border border-gray-600 bg-gray-700 p-6 shadow-sm">
           <h2 class="mb-4 text-lg font-semibold text-slate-900">
             Quick Actions
           </h2>
