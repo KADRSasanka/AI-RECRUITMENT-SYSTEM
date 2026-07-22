@@ -11,12 +11,13 @@
         </h1>
 
 
+
         <form @submit.prevent="handleLogin">
 
 
             <div class="mb-4">
 
-                <label class="block mb-2">
+                <label class="block mb-2 font-medium">
                     Email
                 </label>
 
@@ -24,17 +25,20 @@
                 <input
                     v-model="email"
                     type="email"
-                    class="w-full border rounded-lg p-3"
+                    class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter email"
+                    required
                 />
 
             </div>
 
 
 
+
+
             <div class="mb-4">
 
-                <label class="block mb-2">
+                <label class="block mb-2 font-medium">
                     Password
                 </label>
 
@@ -42,29 +46,36 @@
                 <input
                     v-model="password"
                     type="password"
-                    class="w-full border rounded-lg p-3"
+                    class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter password"
+                    required
                 />
 
             </div>
 
 
 
+
+
             <button
-                class="w-full bg-blue-600 text-white py-3 rounded-lg"
+                type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition disabled:bg-gray-400"
                 :disabled="loading"
             >
 
-                {{loading ? "Logging in..." : "Login"}}
+                {{ loading ? "Logging in..." : "Login" }}
 
             </button>
+
 
 
         </form>
 
 
 
-        <p 
+
+
+        <p
         v-if="error"
         class="text-red-500 mt-4 text-center">
 
@@ -73,12 +84,15 @@
         </p>
 
 
+
     </div>
 
 
 </div>
 
+
 </template>
+
 
 
 
@@ -86,8 +100,11 @@
 
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "../../stores/authStore";
+
+import { useAuthStore } from "../../stores/auth";
+
 import { login } from "../../api/auth";
+
 
 
 const email = ref("");
@@ -106,15 +123,28 @@ const auth = useAuthStore();
 
 
 
+
+
 const handleLogin = async()=>{
 
 
     try{
 
 
-        loading.value=true;
+        loading.value = true;
 
-        error.value="";
+        error.value = "";
+
+
+
+        if(!email.value || !password.value){
+
+            error.value = "Please enter email and password";
+
+            return;
+
+        }
+
 
 
 
@@ -125,23 +155,36 @@ const handleLogin = async()=>{
             password: password.value
 
         });
-        console.log("LOGIN RESPONSE:", response);
 
 
 
-        const token = response.data.token;
+        console.log(
+            "LOGIN RESPONSE:",
+            response.data
+        );
 
 
 
-        auth.setToken(token);
+        /*
+            response.data example:
+
+            {
+                token:"",
+                fullName:"Admin User",
+                email:"admin@email.com",
+                role:"Administrator"
+            }
+
+        */
 
 
 
-        const role = 
-        auth.user.role || 
-        auth.user[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ];
+        auth.login(response.data);
+
+
+
+
+        const role = response.data.role;
 
 
 
@@ -172,6 +215,14 @@ const handleLogin = async()=>{
 
 
 
+            case "Hiring Manager":
+
+                router.push("/manager/dashboard");
+
+                break;
+
+
+
             case "Candidate":
 
                 router.push("/candidate/dashboard");
@@ -182,31 +233,48 @@ const handleLogin = async()=>{
 
             default:
 
-                router.push("/");
+
+                console.log(
+                    "Unknown Role:",
+                    role
+                );
+
+
+                router.push("/login");
+
 
         }
+
 
 
 
     }
     catch(err){
 
-        console.log("LOGIN ERROR:",err);
+
+        console.log(
+            "LOGIN ERROR:",
+            err
+        );
+
 
         error.value =
-        err.response?.data?.message ||
-        "Login failed";
+            err.response?.data?.message ||
+            "Invalid email or password";
 
 
     }
     finally{
 
+
         loading.value=false;
+
 
     }
 
 
 }
+
 
 
 </script>
