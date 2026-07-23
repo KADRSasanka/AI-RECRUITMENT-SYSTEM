@@ -48,6 +48,23 @@ class="block hover:bg-slate-700 p-3 rounded">
 Jobs
 </router-link>
 
+<router-link
+    to="/recruiter/applications"
+    class="block hover:bg-slate-700 p-3 rounded">
+
+    Applications
+
+</router-link>
+
+
+<router-link
+    to="/recruiter/interviews"
+    class="block hover:bg-slate-700 p-3 rounded">
+
+    Interviews
+
+</router-link>
+
 
 </nav>
 

@@ -81,6 +81,45 @@ const routes = [
             }
 
         },
+        {
+            path:"/recruiter/application/:id",
+
+            component:()=>import("../views/recruiter/ApplicationReview.vue"),
+
+            meta:{
+                role:"Recruiter"
+            }
+        },
+        {
+            path:"/recruiter/applications",
+            component:()=>import(
+                "../views/recruiter/Applicants.vue"
+            ),
+            meta:{
+                role:"Recruiter"
+            }
+        },
+        {
+            path: "/recruiter/interviews",
+            component: () => import("../views/interview/InterviewList.vue"),
+            meta:{
+                role:"Recruiter"
+            }
+        },
+        {
+            path: "/recruiter/interviews/create",
+            component: () => import("../views/interview/CreateInterview.vue"),
+            meta:{
+                role:"Recruiter"
+            }
+        },
+        {
+            path: "/recruiter/interviews/:id/edit",
+            component: () => import("../views/interview/EditInterview.vue"),
+            meta:{
+                role:"Recruiter"
+            }
+        }
 
     ]
 },

@@ -38,6 +38,9 @@ public class DashboardRepository : IDashboardRepository
 
             HiredCandidates = await _context.Applications
                 .CountAsync(a => a.Status == "Hired")
+
+
         };
+
     }
 }

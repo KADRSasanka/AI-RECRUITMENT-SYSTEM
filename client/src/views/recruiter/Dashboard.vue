@@ -126,12 +126,22 @@ Create New Job
 
 <router-link
 to="/recruiter/jobs"
-class="block bg-green-600 text-white p-3 rounded-lg text-center">
+class="block bg-green-600 text-white p-3 rounded-lg mb-3 text-center">
 
 Manage Jobs
 
 </router-link>
 
+
+
+
+<router-link
+to="/recruiter/applications"
+class="block bg-blue-600 text-white px-5 py-3 rounded-lg">
+
+Review Applications
+
+</router-link>
 
 
 </div>
