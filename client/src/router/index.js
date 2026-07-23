@@ -70,7 +70,17 @@ const routes = [
         {
             path:"jobs/edit/:id",
             component:()=>import("../views/recruiter/EditJob.vue")
-        }
+        },
+        {
+            path:"/recruiter/jobs/:id/applications",
+
+            component:()=>import("../views/recruiter/Applicants.vue"),
+
+            meta:{
+                role:"Recruiter"
+            }
+
+        },
 
     ]
 },

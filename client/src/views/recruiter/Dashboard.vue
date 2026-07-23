@@ -154,7 +154,8 @@ Manage Jobs
 
 import {ref,onMounted} from "vue";
 
-import StatCard from "../../components/admin/StatCard.vue";
+//import StatCard from "../../components/admin/StatCard.vue";
+import StatCard from "../../components/common/StatCard.vue";
 
 import {getDashboard}
 from "../../api/dashboard";

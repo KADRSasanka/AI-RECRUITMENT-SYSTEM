@@ -95,7 +95,7 @@
 
                     <!-- Title -->
 
-                    <td class="px-6 py-4">
+                    <td class="px-4 py-4">
 
                         <div class="text-sm font-semibold">
 
@@ -114,7 +114,7 @@
 
                     <!-- Organization -->
 
-                    <td class="text-sm px-6 py-4">
+                    <td class="text-sm px-4 py-4">
 
                         {{ job.organizationName }}
 
@@ -123,7 +123,7 @@
 
                     <!-- Department -->
 
-                    <td class="text-sm px-6 py-4">
+                    <td class="text-sm px-4 py-4">
 
                         {{ job.departmentName }}
 
@@ -132,7 +132,7 @@
 
                     <!-- Closing -->
 
-                    <td class="text-sm px-6 py-4">
+                    <td class="text-sm px-4 py-4">
 
                         {{ formatDate(job.closingDate) }}
 
@@ -141,7 +141,7 @@
 
                     <!-- Vacancies -->
 
-                    <td class="text-sm px-6 py-4 text-center">
+                    <td class="text-sm px-4 py-4 text-center">
 
                         {{ job.numberOfVacancies }}
 
@@ -150,7 +150,7 @@
 
                     <!-- Status -->
 
-                    <td class="text-sm px-6 py-4 text-center">
+                    <td class="text-sm px-4 py-4 text-center">
 
                         <span
                             v-if="job.isActive"
@@ -173,7 +173,7 @@
 
                     <!-- Actions -->
 
-                    <td class="px-6 py-4">
+                    <td class="px-4 py-4">
 
                         <div class="flex justify-center gap-2">
 
@@ -197,7 +197,13 @@
                                 @click="viewApplicants(job.jobId)"
                                 class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded">
 
-                                👥
+                                <router-link
+                                :to="`/recruiter/jobs/${job.jobId}/applicants`"
+                                class="text-purple-600">
+
+                                    👥
+
+                                </router-link>
 
                             </button>
 
