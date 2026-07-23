@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using server.Configurations;
 using server.Entities;
