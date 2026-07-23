@@ -6,8 +6,9 @@ using server.Features.Organization.Interfaces;
 namespace server.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-[Authorize(Policy = "AdministratorOnly")]
+[Route("api/Organization")]
+//[Authorize(Policy = "AdministratorOnly")]
+[AllowAnonymous]
 public class OrganizationsController : ControllerBase
 {
     private readonly IOrganizationService _service;

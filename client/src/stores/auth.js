@@ -4,42 +4,73 @@ import { jwtDecode } from "jwt-decode";
 
 export const useAuthStore = defineStore("auth", {
 
-    state: () => ({
+
+    state:()=>({
+
         token: localStorage.getItem("token"),
-        user: JSON.parse(localStorage.getItem("user")) || null
+
+        user:
+        JSON.parse(
+            localStorage.getItem("user")
+        ) || null
+
     }),
 
 
-    getters: {
 
-        isAuthenticated: (state) =>
+    getters:{
+
+
+        isAuthenticated:(state)=>
             !!state.token,
 
 
-        role: (state)=>
+
+        role:(state)=>
             state.user?.role || null
 
+
     },
+
 
 
     actions:{
 
 
-        login(data){
+        setToken(token, data){
 
 
-            this.token = data.token;
+            this.token = token;
 
 
-            this.user = {
+            const decoded = jwtDecode(token);
 
-                id: data.userId || null,
 
-                name: data.fullName,
 
-                email: data.email,
+            this.user={
 
-                role: data.role
+
+                id:
+                decoded.sub,
+
+
+                name:
+                data?.fullName || 
+                decoded.name,
+
+
+
+                email:
+                data?.email ||
+                decoded.email,
+
+
+
+                role:
+                data?.role ||
+                decoded[
+                "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                ]
 
             };
 
@@ -56,14 +87,18 @@ export const useAuthStore = defineStore("auth", {
                 JSON.stringify(this.user)
             );
 
+
         },
+
 
 
         logout(){
 
+
             this.token=null;
 
             this.user=null;
+
 
 
             localStorage.removeItem("token");
@@ -72,6 +107,7 @@ export const useAuthStore = defineStore("auth", {
 
 
         }
+
 
     }
 

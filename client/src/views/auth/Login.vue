@@ -131,9 +131,10 @@ const handleLogin = async()=>{
 
         const token = response.data.token;
 
-
-
-        auth.setToken(token);
+        auth.setToken(
+            token,
+            response.data
+        );
 
 
 

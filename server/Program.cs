@@ -113,7 +113,7 @@ builder.Services.AddAuthorization(options =>
             "Recruiter",
             "Hiring Manager"));
 
-    options.AddPolicy("AdminOrRecruiter",
+    options.AddPolicy("AdministratorOrRecruiter",
         policy => policy.RequireRole(
             "Administrator",
             "Recruiter"));
