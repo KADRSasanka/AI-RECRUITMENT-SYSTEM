@@ -5,3 +5,52 @@
   "password": "Admin@1234",
   "confirmPassword": "Admin@1234"
 }
+
+{
+  "firstName": "John",
+  "lastName": "Recruiter",
+  "email": "recruiter@email.com",
+  "password": "12345678",
+  "confirmPassword": "12345678"
+}
+
+{
+  "firstName": "Sarah",
+  "lastName": "Manager",
+  "email": "manager@email.com",
+  "password": "12345678",
+  "confirmPassword": "12345678"
+}
+
+{
+  "firstName": "David",
+  "lastName": "Candidate",
+  "email": "candidate@email.com",
+  "password": "12345678",
+  "confirmPassword": "12345678"
+}
+
+------------------------------------------
+
+1 	Administrator	  System Administrator
+2	  Recruiter	      Recruitment Officer
+3	  Hiring Manager	Hiring Manager
+4	  Candidate	      Job Applicant
+
+------------------------------------------
+
+After inserting data via Auth - POST /api/Auth/register in Swagger, 
+update the RoleIds of users with their respective RoleId.
+Use the below formats in SSMS.
+
+UPDATE dbo.Users
+SET [RoleId] = 1
+WHERE [UserId] = 2;
+
+UPDATE dbo.Users
+SET [RoleId] = 2
+WHERE [UserId] = 3;
+
+UPDATE dbo.Users
+SET [RoleId] = 3
+WHERE [UserId] = 4;

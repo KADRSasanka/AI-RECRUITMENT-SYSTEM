@@ -41,6 +41,14 @@ class="block hover:bg-slate-700 p-3 rounded">
 Departments
 </router-link>
 
+
+<router-link
+to="/recruiter/jobs"
+class="block hover:bg-slate-700 p-3 rounded">
+Jobs
+</router-link>
+
+
 </nav>
 
 

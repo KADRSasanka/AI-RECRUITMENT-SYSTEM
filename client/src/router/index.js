@@ -53,9 +53,23 @@ const routes = [
     children: [
 
         {
-            path: "dashboard",
-            component: () =>
-                import("../views/recruiter/Dashboard.vue")
+            path:"dashboard",
+            component:()=>import("../views/recruiter/Dashboard.vue")
+        },
+
+        {
+            path:"jobs",
+            component:()=>import("../views/recruiter/Jobs.vue")
+        },
+
+        {
+            path:"jobs/create",
+            component:()=>import("../views/recruiter/CreateJob.vue")
+        },
+
+        {
+            path:"jobs/edit/:id",
+            component:()=>import("../views/recruiter/EditJob.vue")
         }
 
     ]

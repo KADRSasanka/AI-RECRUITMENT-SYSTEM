@@ -18,21 +18,21 @@ User Management
 
 <tr>
 
-<th class="p-4 text-left">
+<th class="p-4 justify-center">
 Name
 </th>
 
-<th class="p-4 text-left">
+<th class="p-4 justify-center">
 Email
 </th>
 
 
-<th class="p-4 text-left">
+<th class="p-4 justify-center">
 Role
 </th>
 
 
-<th class="p-4 text-left">
+<th class="p-4 justify-center">
 Status
 </th>
 
@@ -110,7 +110,7 @@ user.isActive
 import {ref,onMounted} from "vue";
 
 import {getUsers}
-from "../../api/users";
+from "../../api/user";
 
 
 const users=ref([]);
