@@ -505,3 +505,5 @@ C:\xampp\htdocs\AI-RECRUITMENT-SYSTEM\server\obj\Debug\net9.0\server.genruntimec
 C:\xampp\htdocs\AI-RECRUITMENT-SYSTEM\server\obj\Debug\net9.0\ref\server.dll
 C:\xampp\htdocs\AI-RECRUITMENT-SYSTEM\server\bin\Debug\net9.0\package-lock.json
 C:\xampp\htdocs\AI-RECRUITMENT-SYSTEM\server\bin\Debug\net9.0\package.json
+C:\Users\Tharindu\Documents\GitHub\AI-RECRUITMENT-SYSTEM\server\bin\Debug\net9.0\package-lock.json
+C:\Users\Tharindu\Documents\GitHub\AI-RECRUITMENT-SYSTEM\server\bin\Debug\net9.0\package.json
