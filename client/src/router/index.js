@@ -72,7 +72,7 @@ const routes = [
             component:()=>import("../views/recruiter/EditJob.vue")
         },
         {
-            path:"/recruiter/jobs/:id/applications",
+            path:"jobs/:id/applications",
 
             component:()=>import("../views/recruiter/Applicants.vue"),
 
@@ -82,7 +82,7 @@ const routes = [
 
         },
         {
-            path:"/recruiter/application/:id",
+            path:"application/:id",
 
             component:()=>import("../views/recruiter/ApplicationReview.vue"),
 
@@ -91,7 +91,7 @@ const routes = [
             }
         },
         {
-            path:"/recruiter/applications",
+            path:"applications",
             component:()=>import(
                 "../views/recruiter/Applicants.vue"
             ),
@@ -100,21 +100,21 @@ const routes = [
             }
         },
         {
-            path: "/recruiter/interviews",
+            path: "interviews",
             component: () => import("../views/interview/InterviewList.vue"),
             meta:{
                 role:"Recruiter"
             }
         },
         {
-            path: "/recruiter/interviews/create",
+            path: "interviews/create",
             component: () => import("../views/interview/CreateInterview.vue"),
             meta:{
                 role:"Recruiter"
             }
         },
         {
-            path: "/recruiter/interviews/:id/edit",
+            path: "interviews/:id/edit",
             component: () => import("../views/interview/EditInterview.vue"),
             meta:{
                 role:"Recruiter"

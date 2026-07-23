@@ -193,19 +193,13 @@
 
                             </button>
 
-                            <button
-                                @click="viewApplicants(job.jobId)"
+                            <router-link
+                                :to="`/recruiter/jobs/${job.jobId}/applications`"
                                 class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded">
 
-                                <router-link
-                                :to="`/recruiter/jobs/${job.jobId}/applicants`"
-                                class="text-purple-600">
+                                👥
 
-                                    👥
-
-                                </router-link>
-
-                            </button>
+                            </router-link>
 
                         </div>
 

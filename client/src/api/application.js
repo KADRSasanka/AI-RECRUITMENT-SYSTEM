@@ -23,3 +23,6 @@ export const createApplication = (data) =>
 // Update application
 export const updateApplication = (id, data) =>
     api.put(`/Application/${id}`, data);
+
+export const getAllApplications = () =>
+    api.get("/Application");

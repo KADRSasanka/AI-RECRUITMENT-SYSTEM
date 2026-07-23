@@ -13,9 +13,7 @@ Applicants
 </h1>
 
 <p class="text-gray-500">
-
-Candidates who applied for this position
-
+    {{ route.params.id ? "Candidates who applied for this position" : "All candidate applications" }}
 </p>
 
 </div>
@@ -123,30 +121,23 @@ Review
 
 <script setup>
 
-import {ref,onMounted} from "vue";
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { getApplicationsByJob, getAllApplications } from "../../api/application";
 
-import {useRoute} from "vue-router";
+const route = useRoute();
+const applications = ref([]);
 
-import {getApplicationsByJob}
-from "../../api/application";
+const load = async () => {
+    const response = route.params.id
+        ? await getApplicationsByJob(route.params.id)
+        : await getAllApplications();
 
-const route=useRoute();
-
-const applications=ref([]);
-
-const load=async()=>{
-
-const response=
-await getApplicationsByJob(route.params.id);
-
-applications.value=response.data;
-
+    applications.value = response.data;
 };
 
-const formatDate=(date)=>{
-
-return new Date(date).toLocaleDateString();
-
+const formatDate = (date) => {
+    return new Date(date).toLocaleDateString();
 };
 
 onMounted(load);
