@@ -165,7 +165,7 @@ const handleLogin = async()=>{
 
 
 
-            case "HiringManager":
+            case "Hiring Manager":
 
                 router.push("/manager/dashboard");
 

@@ -127,18 +127,47 @@ const routes = [
 // ==================== MANAGER ====================
 
 {
-    path: "/manager",
-    component: DashboardLayout,
-    meta: {
-        role: "Hiring Manager"
-    },
-    children: [
+    path:"/manager",
+    component:DashboardLayout,
 
-        {
-            path: "dashboard",
-            component: () =>
-                import("../views/manager/Dashboard.vue")
-        }
+    meta:{
+        role:"Hiring Manager"
+    },
+
+    children:[
+
+
+    {
+        path:"dashboard",
+        component:()=>import(
+            "../views/manager/Dashboard.vue"
+        )
+    },
+
+
+    {
+        path:"jobs",
+        component:()=>import(
+            "../views/manager/Jobs.vue"
+        )
+    },
+
+
+    {
+        path:"applications",
+        component:()=>import(
+            "../views/manager/Applications.vue"
+        )
+    },
+
+
+    {
+        path:"interviews",
+        component:()=>import(
+            "../views/manager/Interviews.vue"
+        )
+    }
+
 
     ]
 },

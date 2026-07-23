@@ -97,6 +97,40 @@
 
             </div>
 
+
+            <div>
+
+                <label class="block mb-2 font-medium">
+                Hiring Manager
+                </label>
+
+
+                <select
+                v-model="form.hiringManagerId"
+                class="w-full border rounded-lg p-3">
+
+
+                    <option value="">
+                    Select Hiring Manager
+                    </option>
+
+
+                    <option
+                    v-for="user in hiringManagers"
+                    :key="user.userId"
+                    :value="user.userId">
+
+                    {{user.firstName}} {{user.lastName}}
+
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
             <div class="mt-5">
                 <label class="block mb-2 font-medium">Job Description</label>
                 <textarea
@@ -250,6 +284,7 @@ const router = useRouter();
 const organizations = ref([]);
 const departments = ref([]);
 const recruiters = ref([]);
+const hiringManagers = ref([]);
 
 const loading = ref(false);
 const error = ref("");
@@ -258,6 +293,7 @@ const form = ref({
     organizationId: "",
     departmentId: "",
     recruiterId: "",
+    hiringManagerId:"",
     jobTitle: "",
     jobDescription: "",
     employmentType: "Full Time",
@@ -280,6 +316,10 @@ onMounted(async () => {
 
     recruiters.value = users.filter(
         u => u.role === "Recruiter"
+    );
+
+    hiringManagers.value = users.filter(
+        u=>u.role==="Hiring Manager"
     );
 
 });

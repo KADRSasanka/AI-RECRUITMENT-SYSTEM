@@ -20,6 +20,11 @@ public class JobDto
     public string? RecruiterName { get; set; }
 
 
+    public int HiringManagerId { get; set; }
+
+    public string? HiringManagerName { get; set; }
+    
+
     public string JobTitle { get; set; } = string.Empty;
 
 

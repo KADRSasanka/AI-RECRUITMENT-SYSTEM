@@ -169,6 +169,12 @@ public class ApplicationDbContext : DbContext
             .HasForeignKey(j => j.RecruiterId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Job>()
+            .HasOne(j => j.HiringManager)
+            .WithMany()
+            .HasForeignKey(j => j.HiringManagerId)
+            .OnDelete(DeleteBehavior.NoAction);
+
         modelBuilder.Entity<JobSkill>()
             .HasOne(js => js.Job)
             .WithMany(j => j.JobSkills)

@@ -6,6 +6,8 @@ public interface IJobService
 {
     Task<IEnumerable<JobResponseDto>> GetAllAsync();
 
+    Task<IEnumerable<JobDto>> GetByHiringManagerAsync(int id);
+
     Task<JobResponseDto?> GetByIdAsync(int id);
 
     Task<JobResponseDto> CreateAsync(CreateJobDto dto);

@@ -16,6 +16,9 @@ namespace server.Entities
         [Required]
         public int RecruiterId { get; set; }
 
+        //[Required]
+        public int? HiringManagerId { get; set; }
+
         [Required]
         [MaxLength(150)]
         public string JobTitle { get; set; } = string.Empty;
@@ -59,6 +62,8 @@ namespace server.Entities
         public Department? Department { get; set; }
 
         public User? Recruiter { get; set; }
+
+        public User? HiringManager { get; set; }
 
         public ICollection<JobSkill> JobSkills { get; set; }
             = new List<JobSkill>();

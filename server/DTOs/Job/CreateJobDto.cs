@@ -8,6 +8,8 @@ public class CreateJobDto
 
     public int RecruiterId { get; set; }
 
+    public int HiringManagerId { get; set; }
+
     public string JobTitle { get; set; } = string.Empty;
 
     public string JobDescription { get; set; } = string.Empty;
