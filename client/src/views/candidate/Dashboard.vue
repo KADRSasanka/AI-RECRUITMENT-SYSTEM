@@ -42,7 +42,7 @@
 
         <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
 
-            <div class="bg-white rounded-xl shadow p-6">
+            <div class="bg-gray-700 rounded-xl shadow p-6">
 
                 <p class="text-gray-500">
 
@@ -60,7 +60,7 @@
 
 
 
-            <div class="bg-white rounded-xl shadow p-6">
+            <div class="bg-gray-700 rounded-xl shadow p-6">
 
                 <p class="text-gray-500">
 
@@ -78,7 +78,7 @@
 
 
 
-            <div class="bg-white rounded-xl shadow p-6">
+            <div class="bg-gray-700 rounded-xl shadow p-6">
 
                 <p class="text-gray-500">
 
@@ -96,7 +96,7 @@
 
 
 
-            <div class="bg-white rounded-xl shadow p-6">
+            <div class="bg-gray-700 rounded-xl shadow p-6">
 
                 <p class="text-gray-500">
 
@@ -122,7 +122,7 @@
 
             <!-- Upcoming Interview -->
 
-            <div class="bg-white rounded-xl shadow p-6">
+            <div class="bg-gray-700 rounded-xl shadow p-6">
 
                 <h2 class="text-xl font-semibold mb-5">
 
@@ -176,7 +176,7 @@
 
             <!-- Recent Applications -->
 
-            <div class="bg-white rounded-xl shadow p-6">
+            <div class="bg-gray-700 rounded-xl shadow p-6">
 
                 <h2 class="text-xl font-semibold mb-5">
 
@@ -239,7 +239,7 @@
 
         <!-- Recommended Jobs -->
 
-        <div class="bg-white rounded-xl shadow p-6">
+        <div class="bg-gray-700 rounded-xl shadow p-6">
 
             <div class="flex justify-between items-center mb-6">
 

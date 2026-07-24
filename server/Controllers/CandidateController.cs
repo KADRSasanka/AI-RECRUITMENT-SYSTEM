@@ -37,6 +37,26 @@ public class CandidateController : ControllerBase
         return Ok(candidate);
     }
 
+    // GET: api/candidate/dashboard
+    [HttpGet("dashboard")]
+    public async Task<IActionResult> GetDashboard()
+    {
+
+        var candidateId = int.Parse(
+            User.FindFirst(
+                System.Security.Claims.ClaimTypes.NameIdentifier
+            )!.Value
+        );
+
+
+        var dashboard =
+            await _candidateService.GetDashboardAsync(candidateId);
+
+
+        return Ok(dashboard);
+
+    }
+
     // POST: api/candidate
     [HttpPost]
     public async Task<IActionResult> Create(CreateCandidateDto dto)
