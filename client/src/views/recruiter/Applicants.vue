@@ -189,120 +189,48 @@ Review
 
 <script setup>
 
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 
 import {
-ref,
-onMounted
-}
-from "vue";
+    getApplicationsByJob,
+    getAllApplications
+} from "../../api/application";
 
-
-import {
-useRoute
-}
-from "vue-router";
-
-
-import {
-getApplicationsByJob
-}
-from "../../api/application";
-
-
-import {
-analyzeCandidate
-}
-from "../../api/ai";
-
-
+import { analyzeCandidate } from "../../api/ai";
 
 const route = useRoute();
+const applications = ref([]);
 
+const load = async () => {
 
+    const response = route.params.id
+        ? await getApplicationsByJob(route.params.id)
+        : await getAllApplications();
 
-const applications =
-ref([]);
-
-
-
-
-
-
-const load = async()=>{
-
-
-const response =
-await getApplicationsByJob(
-    route.params.id
-);
-
-
-applications.value =
-response.data;
-
+    applications.value = response.data;
 
 };
 
+const loadAI = async (application) => {
+    try {
+        const response = await analyzeCandidate(
+            application.candidateId,
+            application.jobId
+        );
 
-
-
-
-
-const loadAI = async(application)=>{
-
-
-try{
-
-
-const response =
-await analyzeCandidate(
-
-application.candidateId,
-
-application.jobId
-
-);
-
-
-
-application.aiScore =
-response.data.matchScore;
-
-
-
-application.recommendation =
-response.data.recommendation;
-
-
-
-}
-
-catch(error){
-
-console.error(error);
-
-}
-
-
+        application.aiScore = response.data.matchScore;
+        application.recommendation = response.data.recommendation;
+    }
+    catch (error) {
+        console.error(error);
+    }
 };
 
-
-
-
-
-const formatDate=(date)=>{
-
-return new Date(date)
-.toLocaleDateString();
-
+const formatDate = (date) => {
+    return new Date(date).toLocaleDateString();
 };
-
-
-
-
 
 onMounted(load);
-
-
 
 </script>

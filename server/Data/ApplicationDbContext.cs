@@ -195,7 +195,6 @@ public class ApplicationDbContext : DbContext
             .WithMany(j => j.Applications)
             .HasForeignKey(a => a.JobId);
 
-            
 
         modelBuilder.Entity<Interview>()
             .HasOne(i => i.Application)
