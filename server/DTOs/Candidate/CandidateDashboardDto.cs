@@ -1,0 +1,1 @@
+public class CandidateDashboardDto { public int Applications { get; set; } public int Interviews { get; set; } public int Offers { get; set; } public int Rejected { get; set; } public InterviewSummaryDto? NextInterview { get; set; } public List<ApplicationSummaryDto> RecentApplications { get; set; } = []; public List<JobSummaryDto> RecommendedJobs { get; set; } = []; }
