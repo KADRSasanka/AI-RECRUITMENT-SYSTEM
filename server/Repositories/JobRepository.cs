@@ -83,4 +83,9 @@ public class JobRepository : IJobRepository
         _context.Jobs.Remove(job);
         await _context.SaveChangesAsync();
     }
+
+    public Task<IEnumerable<Job>> GetByHiringManagerIdAsync(int hiringManagerId)
+    {
+        throw new NotImplementedException();
+    }
 }

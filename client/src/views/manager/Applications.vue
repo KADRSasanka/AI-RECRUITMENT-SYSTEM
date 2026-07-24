@@ -161,7 +161,7 @@ applications.value=response.data;
 const open=(id)=>{
 
 router.push(
-`/recruiter/application/${id}`
+`/manager/application/${id}`
 );
 
 };

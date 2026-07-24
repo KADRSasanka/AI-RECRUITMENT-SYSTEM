@@ -21,6 +21,12 @@ namespace server.Entities
 
         public string? AIRecommendation { get; set; }
 
+        public string? HiringManagerRemarks { get; set; }
+
+        public DateTime? ReviewedAt { get; set; }
+
+        public int? ReviewedBy { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public DateTime? UpdatedAt { get; set; }

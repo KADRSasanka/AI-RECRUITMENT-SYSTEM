@@ -166,6 +166,13 @@ const routes = [
         component:()=>import(
             "../views/manager/Interviews.vue"
         )
+    },
+
+    {
+        path:"application/:id",
+        component:()=>import(
+            "../views/manager/ManagerApplicationReview.vue"
+        )
     }
 
 
@@ -177,15 +184,49 @@ const routes = [
 {
     path: "/candidate",
     component: DashboardLayout,
-    meta: {
-        role: "Candidate"
+    meta:{
+        role:"Candidate"
     },
-    children: [
+    children:[
 
         {
-            path: "dashboard",
-            component: () =>
-                import("../views/candidate/Dashboard.vue")
+            path:"dashboard",
+            component:()=>import("../views/candidate/Dashboard.vue")
+        },
+
+        {
+            path:"jobs",
+            component:()=>import("../views/candidate/BrowseJobs.vue")
+        },
+
+        {
+            path:"jobs/:id",
+            component:()=>import("../views/candidate/JobDetails.vue")
+        },
+
+        {
+            path:"applications",
+            component:()=>import("../views/candidate/Applications.vue")
+        },
+
+        {
+            path:"applications/:id",
+            component:()=>import("../views/candidate/ApplicationDetails.vue")
+        },
+
+        {
+            path:"interviews",
+            component:()=>import("../views/candidate/Interviews.vue")
+        },
+
+        {
+            path:"resume",
+            component:()=>import("../views/candidate/Resume.vue")
+        },
+
+        {
+            path:"profile",
+            component:()=>import("../views/candidate/Profile.vue")
         }
 
     ]

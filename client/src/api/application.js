@@ -26,3 +26,6 @@ export const updateApplication = (id, data) =>
 
 export const getAllApplications = () =>
     api.get("/Application");
+
+export const managerReview = (id, data) =>
+    api.put(`/Application/manager-review/${id}`, data);

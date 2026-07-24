@@ -12,6 +12,8 @@ public interface IJobRepository
 
     Task<IEnumerable<Job>> GetByDepartmentAsync(int departmentId);
 
+    Task<IEnumerable<Job>> GetByHiringManagerIdAsync(int hiringManagerId);
+
     Task<IEnumerable<Job>> SearchAsync(string keyword);
 
     Task AddAsync(Job job);
