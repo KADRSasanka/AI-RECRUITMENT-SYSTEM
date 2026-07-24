@@ -14,8 +14,10 @@
 
         <router-link
             to="/recruiter/jobs"
-            class="border px-6 py-2 rounded-lg hover:bg-gray-100">
+            class="bg-gray-600 px-6 py-2 rounded-lg hover:bg-gray-300">
+
             ⏪ Back
+
         </router-link>
 
     </div>
