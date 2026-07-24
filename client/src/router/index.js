@@ -225,6 +225,13 @@ const routes = [
         },
 
         {
+            path:"resume",
+            component:()=>import(
+                "../views/candidate/Resume.vue"
+            )
+        },
+
+        {
             path:"profile",
             component:()=>import("../views/candidate/Profile.vue")
         }

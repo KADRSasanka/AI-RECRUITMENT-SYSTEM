@@ -57,7 +57,7 @@ class="bg-gray-700 rounded-xl p-6">
 
 :to="`/candidate/jobs/${job.jobId}`"
 
-class="inline-block mt-5 bg-blue-600 px-5 py-2 rounded-lg">
+class="inline-block mt-5 bg-blue-600 px-5 py-2 rounded-lg text-white">
 
 View Job
 

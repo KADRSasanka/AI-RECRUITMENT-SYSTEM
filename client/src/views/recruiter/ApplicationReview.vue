@@ -115,47 +115,84 @@
 
 
 
-
-        <!-- AI -->
+        <!-- AI Analysis -->
 
         <div class="bg-gray-700 rounded-xl shadow p-6">
 
+
             <h2 class="text-xl font-semibold mb-5">
-
-                AI Evaluation
-
+            AI Candidate Evaluation
             </h2>
 
-            <div class="flex items-center gap-8">
 
-                <div
-                    class="w-28 h-28 rounded-full bg-blue-100 flex items-center justify-center">
 
-                    <span class="text-3xl font-bold text-blue-700">
+            <div v-if="aiLoading">
 
-                        {{ application.score ?? 0 }}%
+                Analyzing candidate...
 
-                    </span>
+            </div>
 
-                </div>
+
+
+            <div v-else>
+
+
+                <div class="flex gap-8 items-center">
+
+
+                    <div
+                    class="w-32 h-32 rounded-full bg-purple-100 flex items-center justify-center">
+
+                        <span class="text-3xl font-bold text-purple-700">
+
+                        {{aiResult.matchScore ?? 0}}%
+
+                        </span>
+
+                    </div>
+
 
                 <div>
 
-                    <h3 class="font-bold text-xl">
 
-                        {{ recommendation }}
+                <h3 class="text-xl font-bold">
 
-                    </h3>
+                    {{aiResult.recommendation}}
 
-                    <p class="text-gray-200 mt-2">
+                </h3>
 
-                        {{ application.aiRecommendation || "No AI recommendation available." }}
 
-                    </p>
+                <p class="mt-3">
 
-                </div>
+                    <strong>
+                    Strengths:
+                    </strong>
+
+                    {{aiResult.strengths}}
+
+                </p>
+
+
+                <p class="mt-3">
+
+                    <strong>
+                    Missing Skills:
+                    </strong>
+
+                    {{aiResult.missingSkills}}
+
+                </p>
+
 
             </div>
+
+
+
+        </div>
+
+
+        </div>
+
 
         </div>
 
@@ -262,11 +299,19 @@ import {
     updateApplication
 } from "../../api/application";
 
+import {
+analyzeCandidate
+}
+from "../../api/ai";
+
 const route = useRoute();
 const router = useRouter();
 
 const loading = ref(true);
 const application = ref({});
+
+const aiResult = ref({});
+const aiLoading = ref(false);
 
 const recommendation=computed(()=>{
 
@@ -283,6 +328,50 @@ if(score>=40) return "Average Match";
 return "Poor Match";
 
 });
+
+
+const loadAI = async()=>{
+
+
+try{
+
+
+aiLoading.value=true;
+
+
+
+const response =
+await analyzeCandidate(
+
+application.value.candidateId,
+
+application.value.jobId
+
+);
+
+
+
+aiResult.value =
+response.data;
+
+
+}
+
+catch(error){
+
+console.error(error);
+
+}
+
+finally{
+
+aiLoading.value=false;
+
+}
+
+
+};
+
 
 const loadApplication=async()=>{
 
@@ -377,9 +466,11 @@ return new Date(date).toLocaleDateString();
 
 };
 
-onMounted(()=>{
+onMounted(async()=>{
 
-loadApplication();
+await loadApplication();
+
+await loadAI();
 
 });
 
