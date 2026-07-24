@@ -22,4 +22,6 @@ public class RegisterRequest
 
     [Compare("Password")]
     public string ConfirmPassword { get; set; } = "";
+
+    public int RoleId {get; set;}
 }
