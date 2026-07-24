@@ -11,8 +11,12 @@ export const updateCandidate = (id,data)=>
     api.put(`/Candidate/${id}`,data);
 
 export const deleteCandidate=id=>
+<<<<<<< HEAD
     api.delete(`/Candidate/${id}`);export const getCandidateDashboard = () =>
     api.get("/Candidate/dashboard");
+=======
+    api.delete(`/Candidate/${id}`);
+>>>>>>> 8f9a0d3bd98dbda438bedc965666c7ed17e6bd2d
 
 export const getCandidateDashboard = () =>
     api.get("/Candidate/dashboard");
