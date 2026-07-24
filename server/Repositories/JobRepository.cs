@@ -19,6 +19,8 @@ public class JobRepository : IJobRepository
             .Include(j => j.Organization)
             .Include(j => j.Department)
             .Include(j => j.Recruiter)
+            .Include(j => j.HiringManager)
+            .OrderByDescending(j => j.CreatedAt)
             .ToListAsync();
     }
 
@@ -42,6 +44,16 @@ public class JobRepository : IJobRepository
     {
         return await _context.Jobs
             .Where(j => j.DepartmentId == departmentId)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Job>> GetByHiringManagerAsync(int id)
+    {
+        return await _context.Jobs
+            .Include(x=>x.Department)
+            .Include(x=>x.Organization)
+            .Include(x=>x.Recruiter)
+            .Where(x=>x.HiringManagerId==id)
             .ToListAsync();
     }
 
@@ -70,5 +82,10 @@ public class JobRepository : IJobRepository
     {
         _context.Jobs.Remove(job);
         await _context.SaveChangesAsync();
+    }
+
+    public Task<IEnumerable<Job>> GetByHiringManagerIdAsync(int hiringManagerId)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -84,66 +84,73 @@ public class CandidateService : ICandidateService
 
 
     public async Task<CandidateResponseDto> CreateAsync(
-        CreateCandidateDto dto)
+            CreateCandidateDto dto)
+        {
+
+
+            var candidate = new Candidate
+            {
+
+                UserId = dto.UserId,
+
+                DateOfBirth = dto.DateOfBirth,
+
+                Gender = dto.Gender,
+
+                Nationality = dto.Nationality,
+
+                CurrentPosition = dto.CurrentPosition,
+
+                CurrentCompany = dto.CurrentCompany,
+
+                YearsOfExperience = dto.YearsOfExperience,
+
+                ExpectedSalary = dto.ExpectedSalary,
+
+                Availability = dto.Availability,
+
+                LinkedInUrl = dto.LinkedInUrl,
+
+                GitHubUrl = dto.GitHubUrl,
+
+                PortfolioUrl = dto.PortfolioUrl,
+
+                ProfileSummary = dto.ProfileSummary
+
+            };
+
+
+            var result =
+                await _repository.CreateAsync(candidate);
+
+
+
+            return new CandidateResponseDto
+            {
+                CandidateId = result.CandidateId,
+
+                UserId = result.UserId,
+
+                CurrentPosition = result.CurrentPosition,
+
+                CurrentCompany = result.CurrentCompany,
+
+                YearsOfExperience = result.YearsOfExperience,
+
+                ProfileSummary = result.ProfileSummary,
+
+                CreatedAt = result.CreatedAt
+            };
+
+        }
+
+
+        public async Task<CandidateDashboardDto> GetDashboardAsync(int candidateId)
     {
 
-
-        var candidate = new Candidate
-        {
-
-            UserId = dto.UserId,
-
-            DateOfBirth = dto.DateOfBirth,
-
-            Gender = dto.Gender,
-
-            Nationality = dto.Nationality,
-
-            CurrentPosition = dto.CurrentPosition,
-
-            CurrentCompany = dto.CurrentCompany,
-
-            YearsOfExperience = dto.YearsOfExperience,
-
-            ExpectedSalary = dto.ExpectedSalary,
-
-            Availability = dto.Availability,
-
-            LinkedInUrl = dto.LinkedInUrl,
-
-            GitHubUrl = dto.GitHubUrl,
-
-            PortfolioUrl = dto.PortfolioUrl,
-
-            ProfileSummary = dto.ProfileSummary
-
-        };
-
-
-        var result =
-            await _repository.CreateAsync(candidate);
-
-
-
-        return new CandidateResponseDto
-        {
-            CandidateId = result.CandidateId,
-
-            UserId = result.UserId,
-
-            CurrentPosition = result.CurrentPosition,
-
-            CurrentCompany = result.CurrentCompany,
-
-            YearsOfExperience = result.YearsOfExperience,
-
-            ProfileSummary = result.ProfileSummary,
-
-            CreatedAt = result.CreatedAt
-        };
+        return await _repository.GetDashboardAsync(candidateId);
 
     }
-
 
 
 

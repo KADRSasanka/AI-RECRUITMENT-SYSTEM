@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using server.DTOs.Application;
+using server.DTOs.Manager;
 using server.Interfaces;
 
 
@@ -9,8 +10,8 @@ namespace server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
-
+//[Authorize]
+[AllowAnonymous]
 public class ApplicationController : ControllerBase
 {
 
@@ -144,6 +145,20 @@ public class ApplicationController : ControllerBase
             "Application updated successfully"
         );
 
+    }
+
+    [HttpPut("manager-review/{id}")]
+    [Authorize(Roles = "Hiring Manager")]
+    public async Task<IActionResult> ManagerReview(
+        int id,
+        ManagerReviewDto dto)
+    {
+        var result = await _service.ManagerReviewAsync(id, dto);
+
+        if (!result)
+            return NotFound();
+
+        return Ok();
     }
 
 }

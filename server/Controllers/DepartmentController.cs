@@ -6,8 +6,9 @@ using server.Features.Department.Interfaces;
 namespace server.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [Authorize(Policy = "AdminOrRecruiter")]
+    [Route("api/Department")]
+    //[Authorize(Policy = "AdministratorOrRecruiter")]
+    [AllowAnonymous]
     public class DepartmentController : ControllerBase
     {
         private readonly IDepartmentService _service;

@@ -1,3 +1,362 @@
 <template>
-    <h1>Candidate Dashboard</h1>
+
+<div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+
+    <div class="mb-8">
+
+        <h1 class="text-3xl font-bold">
+
+            Candidate Dashboard
+
+        </h1>
+
+        <p class="text-gray-500 mt-2">
+
+            Welcome back! Here's an overview of your recruitment journey.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- Loading -->
+
+    <div
+        v-if="loading"
+        class="text-center py-20">
+
+        Loading dashboard...
+
+    </div>
+
+
+
+    <div
+        v-else
+        class="space-y-8">
+
+        <!-- Statistics -->
+
+        <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
+
+            <div class="bg-gray-700 rounded-xl shadow p-6">
+
+                <p class="text-gray-500">
+
+                    Applications
+
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3">
+
+                    {{ dashboard.applications }}
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="bg-gray-700 rounded-xl shadow p-6">
+
+                <p class="text-gray-500">
+
+                    Interviews
+
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3">
+
+                    {{ dashboard.interviews }}
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="bg-gray-700 rounded-xl shadow p-6">
+
+                <p class="text-gray-500">
+
+                    Offers
+
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3 text-green-600">
+
+                    {{ dashboard.offers }}
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="bg-gray-700 rounded-xl shadow p-6">
+
+                <p class="text-gray-500">
+
+                    Rejected
+
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3 text-red-500">
+
+                    {{ dashboard.rejected }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Middle Section -->
+
+        <div class="grid lg:grid-cols-2 gap-8">
+
+            <!-- Upcoming Interview -->
+
+            <div class="bg-gray-700 rounded-xl shadow p-6">
+
+                <h2 class="text-xl font-semibold mb-5">
+
+                    Upcoming Interview
+
+                </h2>
+
+                <div
+                    v-if="dashboard.nextInterview">
+
+                    <h3 class="text-xl font-bold">
+
+                        {{ dashboard.nextInterview.jobTitle }}
+
+                    </h3>
+
+                    <p class="text-gray-500 mt-2">
+
+                        {{ dashboard.nextInterview.organizationName }}
+
+                    </p>
+
+                    <p class="mt-4">
+
+                        {{ formatDate(dashboard.nextInterview.interviewDate) }}
+
+                    </p>
+
+                    <a
+                        :href="dashboard.nextInterview.meetingLink"
+                        target="_blank"
+                        class="inline-block mt-5 bg-blue-600 text-white px-5 py-3 rounded-lg">
+
+                        Join Meeting
+
+                    </a>
+
+                </div>
+
+                <div
+                    v-else
+                    class="text-gray-500">
+
+                    No upcoming interviews.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Recent Applications -->
+
+            <div class="bg-gray-700 rounded-xl shadow p-6">
+
+                <h2 class="text-xl font-semibold mb-5">
+
+                    Recent Applications
+
+                </h2>
+
+                <table class="w-full">
+
+                    <thead>
+
+                        <tr class="border-b">
+
+                            <th class="text-left pb-3">
+
+                                Job
+
+                            </th>
+
+                            <th>
+
+                                Status
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr
+                            v-for="application in dashboard.recentApplications"
+                            :key="application.applicationId"
+                            class="border-b">
+
+                            <td class="py-4">
+
+                                {{ application.jobTitle }}
+
+                            </td>
+
+                            <td>
+
+                                {{ application.status }}
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Recommended Jobs -->
+
+        <div class="bg-gray-700 rounded-xl shadow p-6">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <h2 class="text-xl font-semibold">
+
+                    Recommended Jobs
+
+                </h2>
+
+                <router-link
+                    to="/candidate/jobs"
+                    class="text-blue-600">
+
+                    View All
+
+                </router-link>
+
+            </div>
+
+
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <div
+                    v-for="job in dashboard.recommendedJobs"
+                    :key="job.jobId"
+                    class="border rounded-xl p-5">
+
+                    <h3 class="font-bold text-lg">
+
+                        {{ job.jobTitle }}
+
+                    </h3>
+
+                    <p class="text-gray-500 mt-2">
+
+                        {{ job.organizationName }}
+
+                    </p>
+
+                    <router-link
+                        :to="`/candidate/jobs/${job.jobId}`"
+                        class="inline-block mt-5 bg-blue-600 text-white px-4 py-2 rounded">
+
+                        View Job
+
+                    </router-link>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 </template>
+
+<script setup>
+
+import { ref, onMounted } from "vue";
+
+import api from "../../api/axios";
+
+const loading = ref(true);
+
+const dashboard = ref({
+
+    applications:0,
+
+    interviews:0,
+
+    offers:0,
+
+    rejected:0,
+
+    nextInterview:null,
+
+    recentApplications:[],
+
+    recommendedJobs:[]
+
+});
+
+const loadDashboard = async()=>{
+
+    try{
+
+        const response =
+            await api.get("/Candidate/dashboard");
+
+        dashboard.value = response.data;
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+    finally{
+
+        loading.value = false;
+
+    }
+
+};
+
+const formatDate=(date)=>{
+
+    return new Date(date).toLocaleString();
+
+};
+
+onMounted(loadDashboard);
+
+</script>

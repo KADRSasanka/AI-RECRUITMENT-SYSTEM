@@ -1,9 +1,9 @@
-using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 using server.Configurations;
 using server.Entities;
 using server.Features.Auth.Interfaces;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 

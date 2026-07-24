@@ -12,3 +12,6 @@ export const updateCandidate = (id,data)=>
 
 export const deleteCandidate=id=>
     api.delete(`/Candidate/${id}`);
+
+export const getCandidateDashboard = () =>
+    api.get("/Candidate/dashboard");

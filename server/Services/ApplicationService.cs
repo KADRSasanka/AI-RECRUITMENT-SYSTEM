@@ -1,6 +1,7 @@
 using server.DTOs.Application;
 using server.Interfaces;
 using server.Entities;
+using server.DTOs.Manager;
 
 
 namespace server.Services;
@@ -224,4 +225,8 @@ public class ApplicationService : IApplicationService
 
     }
 
+    public Task<bool> ManagerReviewAsync(int id, ManagerReviewDto dto)
+    {
+        throw new NotImplementedException();
+    }
 }

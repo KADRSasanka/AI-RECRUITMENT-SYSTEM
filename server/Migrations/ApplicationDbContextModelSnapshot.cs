@@ -42,11 +42,20 @@ namespace server.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("HiringManagerRemarks")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("JobId")
                         .HasColumnType("int");
 
                     b.Property<string>("RecruiterRemarks")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ReviewedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ReviewedBy")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("Score")
                         .HasColumnType("decimal(18,2)");
@@ -385,6 +394,9 @@ namespace server.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("HiringManagerId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -428,6 +440,8 @@ namespace server.Migrations
                     b.HasKey("JobId");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("HiringManagerId");
 
                     b.HasIndex("OrganizationId");
 
@@ -873,6 +887,11 @@ namespace server.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("server.Entities.User", "HiringManager")
+                        .WithMany()
+                        .HasForeignKey("HiringManagerId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.HasOne("server.Entities.Organization", "Organization")
                         .WithMany("Jobs")
                         .HasForeignKey("OrganizationId")
@@ -886,6 +905,8 @@ namespace server.Migrations
                         .IsRequired();
 
                     b.Navigation("Department");
+
+                    b.Navigation("HiringManager");
 
                     b.Navigation("Organization");
 

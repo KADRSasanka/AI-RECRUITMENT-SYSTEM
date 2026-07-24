@@ -239,4 +239,8 @@ public class JobService : IJobService
         return true;
     }
 
+    public Task<IEnumerable<JobDto>> GetByHiringManagerAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
 }

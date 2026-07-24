@@ -70,6 +70,55 @@ const routes = [
         {
             path:"jobs/edit/:id",
             component:()=>import("../views/recruiter/EditJob.vue")
+        },
+        {
+            path:"jobs/:id/applications",
+
+            component:()=>import("../views/recruiter/Applicants.vue"),
+
+            meta:{
+                role:"Recruiter"
+            }
+
+        },
+        {
+            path:"application/:id",
+
+            component:()=>import("../views/recruiter/ApplicationReview.vue"),
+
+            meta:{
+                role:"Recruiter"
+            }
+        },
+        {
+            path:"applications",
+            component:()=>import(
+                "../views/recruiter/Applicants.vue"
+            ),
+            meta:{
+                role:"Recruiter"
+            }
+        },
+        {
+            path: "interviews",
+            component: () => import("../views/interview/InterviewList.vue"),
+            meta:{
+                role:"Recruiter"
+            }
+        },
+        {
+            path: "interviews/create",
+            component: () => import("../views/interview/CreateInterview.vue"),
+            meta:{
+                role:"Recruiter"
+            }
+        },
+        {
+            path: "interviews/:id/edit",
+            component: () => import("../views/interview/EditInterview.vue"),
+            meta:{
+                role:"Recruiter"
+            }
         }
 
     ]
@@ -78,18 +127,54 @@ const routes = [
 // ==================== MANAGER ====================
 
 {
-    path: "/manager",
-    component: DashboardLayout,
-    meta: {
-        role: "Hiring Manager"
-    },
-    children: [
+    path:"/manager",
+    component:DashboardLayout,
 
-        {
-            path: "dashboard",
-            component: () =>
-                import("../views/manager/Dashboard.vue")
-        }
+    meta:{
+        role:"Hiring Manager"
+    },
+
+    children:[
+
+
+    {
+        path:"dashboard",
+        component:()=>import(
+            "../views/manager/Dashboard.vue"
+        )
+    },
+
+
+    {
+        path:"jobs",
+        component:()=>import(
+            "../views/manager/Jobs.vue"
+        )
+    },
+
+
+    {
+        path:"applications",
+        component:()=>import(
+            "../views/manager/Applications.vue"
+        )
+    },
+
+
+    {
+        path:"interviews",
+        component:()=>import(
+            "../views/manager/Interviews.vue"
+        )
+    },
+
+    {
+        path:"application/:id",
+        component:()=>import(
+            "../views/manager/ManagerApplicationReview.vue"
+        )
+    }
+
 
     ]
 },
@@ -99,15 +184,56 @@ const routes = [
 {
     path: "/candidate",
     component: DashboardLayout,
-    meta: {
-        role: "Candidate"
+    meta:{
+        role:"Candidate"
     },
-    children: [
+    children:[
 
         {
-            path: "dashboard",
-            component: () =>
-                import("../views/candidate/Dashboard.vue")
+            path:"dashboard",
+            component:()=>import("../views/candidate/Dashboard.vue")
+        },
+
+        {
+            path:"jobs",
+            component:()=>import("../views/candidate/BrowseJobs.vue")
+        },
+
+        {
+            path:"jobs/:id",
+            component:()=>import("../views/candidate/JobDetails.vue")
+        },
+
+        {
+            path:"applications",
+            component:()=>import("../views/candidate/Applications.vue")
+        },
+
+        {
+            path:"applications/:id",
+            component:()=>import("../views/candidate/ApplicationDetails.vue")
+        },
+
+        {
+            path:"interviews",
+            component:()=>import("../views/candidate/Interviews.vue")
+        },
+
+        {
+            path:"resume",
+            component:()=>import("../views/candidate/Resume.vue")
+        },
+
+        {
+            path:"resume",
+            component:()=>import(
+                "../views/candidate/Resume.vue"
+            )
+        },
+
+        {
+            path:"profile",
+            component:()=>import("../views/candidate/Profile.vue")
         }
 
     ]

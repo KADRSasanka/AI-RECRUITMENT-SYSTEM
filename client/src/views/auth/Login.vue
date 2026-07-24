@@ -6,9 +6,10 @@
     <div class="bg-gray-600 p-8 rounded-xl shadow-lg w-96">
 
 
-        <h1 class="text-3xl font-bold text-center mb-6">
-            AI Recruitment System
+        <h1 class="text-4xl font-bold text-center uppercase" style="margin-bottom: 0px;">
+            Aptivo
         </h1>
+        <h6 class="text-center mb-10">AI Recruitment System</h6>
 
 
         <form @submit.prevent="handleLogin">
@@ -24,7 +25,7 @@
                 <input
                     v-model="email"
                     type="email"
-                    class="w-full border border-transparent hover:border-gray-400 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full bg-gray-500 border border-transparent hover:border-gray-400 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter email"
                 />
 
@@ -42,7 +43,7 @@
                 <input
                     v-model="password"
                     type="password"
-                    class="w-full border border-transparent hover:border-gray-400 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full bg-gray-500 border border-transparent hover:border-gray-400 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter password"
                 />
 
@@ -51,7 +52,7 @@
 
 
             <button
-                class="w-full bg-blue-600 text-white py-3 rounded-lg"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg"
                 :disabled="loading"
             >
 
@@ -131,9 +132,10 @@ const handleLogin = async()=>{
 
         const token = response.data.token;
 
-
-
-        auth.setToken(token);
+        auth.setToken(
+            token,
+            response.data
+        );
 
 
 
@@ -164,7 +166,7 @@ const handleLogin = async()=>{
 
 
 
-            case "HiringManager":
+            case "Hiring Manager":
 
                 router.push("/manager/dashboard");
 

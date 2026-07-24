@@ -11,6 +11,8 @@ public interface ICandidateService
     Task<CandidateResponseDto> CreateAsync(
         CreateCandidateDto dto);
 
+    Task<CandidateDashboardDto> GetDashboardAsync(int candidateId);
+
     Task<bool> UpdateAsync(
         int id,
         UpdateCandidateDto dto);
